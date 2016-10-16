@@ -1,7 +1,7 @@
 /* CRITTERS Critter.java
  * EE422C Project 4 submission by
  * Replace <...> with your actual data.
- * Quinn
+ * Quinn z
  * <Student1 EID>
  * <Student1 5-digit Unique No.>
  * <Student2 Name>
