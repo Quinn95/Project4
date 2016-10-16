@@ -100,6 +100,13 @@ public abstract class Critter {
 		}
 	}
 	
+	private final static int[] getRandomCoord(void){
+		int rx = getRandomInt(Params.world_width-1);
+		int ry = getRandomInt(Params.world_height-1);
+		int[] arr = {rx, ry};
+		return arr;
+	}
+	
 	protected final void reproduce(Critter offspring, int direction) {
 	}
 
@@ -118,18 +125,23 @@ public abstract class Critter {
 	 */
 	public static void makeCritter(String critter_class_name) throws InvalidCritterException {
 		try{
+			Critter temp = (Critter) Class.forName(critter_class_name).newInstance();
+			//set variables
+			int[] xyPos = getRandomCoord();
+			temp.x_coord = xyPos[0];
+			temp.y_coord = xyPos[1];
+			population.add(temp);
 		}
-		catch(Exception e){
+		catch(ClassNotFoundException e){
+			throw new InvalidCritterException(critter_class_name);
+		} catch (InstantiationException e) {
+			throw new InvalidCritterException(critter_class_name);
+		} catch (IllegalAccessException e) {
 			throw new InvalidCritterException(critter_class_name);
 		}
 		
-		if(critter_class_name.equals("Craig")){
-			Craig temp = new Craig();
-			population.add(temp);
-			
-		}
-			throw new InvalidCritterException(critter_class_name);
 	}
+	
 	
 	/**
 	 * Gets a list of critters of a specific type.
