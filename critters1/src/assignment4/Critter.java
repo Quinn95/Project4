@@ -73,6 +73,18 @@ public abstract class Critter {
 	 * @throws InvalidCritterException
 	 */
 	public static void makeCritter(String critter_class_name) throws InvalidCritterException {
+		try{
+		}
+		catch(Exception e){
+			throw new InvalidCritterException(critter_class_name);
+		}
+		
+		if(critter_class_name.equals("Craig")){
+			Craig temp = new Craig();
+			population.add(temp);
+			
+		}
+			throw new InvalidCritterException(critter_class_name);
 	}
 	
 	/**
@@ -83,7 +95,9 @@ public abstract class Critter {
 	 */
 	public static List<Critter> getInstances(String critter_class_name) throws InvalidCritterException {
 		List<Critter> result = new java.util.ArrayList<Critter>();
-	
+		for(Critter c : population){
+			
+		}
 		return result;
 	}
 	
