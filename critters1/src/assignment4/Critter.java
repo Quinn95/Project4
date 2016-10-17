@@ -132,11 +132,11 @@ public abstract class Critter {
 			temp.y_coord = xyPos[1];
 			population.add(temp);
 		}
-		catch(ClassNotFoundException e){
+		catch(ClassNotFoundException e1){
 			throw new InvalidCritterException(critter_class_name);
-		} catch (InstantiationException e) {
+		} catch (InstantiationException e2) {
 			throw new InvalidCritterException(critter_class_name);
-		} catch (IllegalAccessException e) {
+		} catch (IllegalAccessException e3) {
 			throw new InvalidCritterException(critter_class_name);
 		}
 		
