@@ -130,6 +130,7 @@ public abstract class Critter {
 			int[] xyPos = getRandomCoord();
 			temp.x_coord = xyPos[0];
 			temp.y_coord = xyPos[1];
+			temp.energy = Params.start_energy;
 			population.add(temp);
 		}
 		catch(ClassNotFoundException e1){
