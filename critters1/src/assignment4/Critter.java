@@ -4,7 +4,7 @@
  * Quinn z
  * <Student1 EID>
  * <Student1 5-digit Unique No.>
- * <Student2 Name>
+ * Ali Ziyaan Momin
  * <Student2 EID>
  * <Student2 5-digit Unique No.>
  * Slip days used: <0>
