@@ -5,7 +5,7 @@
  * <Student1 EID>
  * <Student1 5-digit Unique No.>
  * Ali Ziyaan Momin
- * <Student2 EID>
+ * AZM259
  * <Student2 5-digit Unique No.>
  * Slip days used: <0>
  * Fall 2016
