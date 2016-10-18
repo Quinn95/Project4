@@ -61,28 +61,28 @@ public abstract class Critter {
 	protected final void walk(int direction) {
 
 		if(direction == 0){
-			moveCritter(0,1);
+			moveCritter(0,-1);
 		}
 		else if(direction == 1){
-			moveCritter(1,1);
-		}
-		else if(direction == 2){
-			moveCritter(1,0);
-		}
-		else if(direction == 3){
-			moveCritter(1,-1);
-		}
-		else if(direction == 4){
-			moveCritter(0, -1);
-		}
-		else if(direction == 5){
 			moveCritter(-1,-1);
 		}
-		else if(direction == 6){
+		else if(direction == 2){
 			moveCritter(-1,0);
 		}
-		else if(direction == 7){
+		else if(direction == 3){
 			moveCritter(-1,1);
+		}
+		else if(direction == 4){
+			moveCritter(0, 1);
+		}
+		else if(direction == 5){
+			moveCritter(1,1);
+		}
+		else if(direction == 6){
+			moveCritter(1,0);
+		}
+		else if(direction == 7){
+			moveCritter(1,-1);
 		}
 
 		energy -= Params.walk_energy_cost;
