@@ -12,6 +12,7 @@
  */
 package assignment4;
 
+import java.util.Arrays;
 import java.util.List;
 
 /* see the PDF for descriptions of the methods and fields in this class
@@ -120,8 +121,7 @@ public abstract class Critter {
 	
 	//should be static I think
 	private final void moveCritter(int x_coord, int y_coord){
-
-		if(!this.hasMoved) {
+		if(this.hasMoved) {
 			return;
 		}
 
