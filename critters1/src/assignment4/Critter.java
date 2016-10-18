@@ -317,6 +317,10 @@ public abstract class Critter {
 		}
 		
 		//add babies to population
+		for(Critter b : babies){
+			population.add(b);
+			babies.remove(b);
+		}
 		
 		
 	}
