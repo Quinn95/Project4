@@ -116,6 +116,8 @@ public abstract class Critter {
 		energy -= Params.run_energy_cost;
 	}
 
+	
+	//should be static I think
 	private final void moveCritter(int x_coord, int y_coord){
 
 		if(!this.hasMoved) {
@@ -306,10 +308,17 @@ public abstract class Critter {
 	 * Clear the world of all critters, dead and alive
 	 */
 	public static void clearWorld() {
+		population.clear();
+		babies.clear();
 	}
 	
 	private static boolean onSquare(Critter c, int x, int y){
 		return (c.x_coord == x) && (c.y_coord == y);
+	}
+
+	private static void killCritter(Critter c){
+		positionMap[c.x_coord][c.y_coord] -= 1;
+		population.remove(c);
 	}
 	
 	public static void worldTimeStep() {
@@ -321,12 +330,10 @@ public abstract class Critter {
 			
 			//remove dead creatures
 			if(c.energy <= 0){
-				positionMap[c.x_coord][c.y_coord] -= 1;
-				population.remove(c);
+				killCritter(c);		
 			}
+		}	
 			
-			
-		}
 		//check for encounters
 		for(int i = 0; i < Params.world_height; i++){
 			for(int j = 0; j < Params.world_width; j++){
@@ -360,6 +367,7 @@ public abstract class Critter {
 		boolean boolB;
 		int powA;
 		int powB;
+		boolean stillFighting = true;
 
 		while(fightClub.size() > 1){
 			A = fightClub.get(0);
@@ -372,15 +380,15 @@ public abstract class Critter {
 			boolB = B.fight(A.toString());
 
 			if(A.energy <= 0){
-				positionMap[A.x_coord][A.y_coord] -= 1;
-				population.remove(A);
+				killCritter(A);
+				stillFighting = false;
 			}
 			if(B.energy <= 0){
-				positionMap[B.x_coord][B.y_coord] -= 1;
-				population.remove(B);
+				killCritter(B);
+				stillFighting = false;
 			}
 
-			if(A.x_coord == B.x_coord && A.y_coord == B.y_coord){
+			if(stillFighting && A.x_coord == B.x_coord && A.y_coord == B.y_coord){
 				int rollA = (boolA?getRandomInt(A.getEnergy()):0);
 				//int rollA = getRandomInt((boolA?A.getEnergy():0));
 
@@ -400,5 +408,23 @@ public abstract class Critter {
 		}
 	}
 	
-	public static void displayWorld() {}
+	public static void displayWorld() {
+		System.out.print("+");
+		for(int i = 0; i < Params.world_width-1; i++){
+			System.out.print("-");
+		}
+		System.out.print("+");
+		
+		for(int i = 0; i < Params.world_height-1; i++){
+			System.out.print("|");
+			for(int j = 0; j < Params.world_width-1; j++){
+				if(positionMap[]){
+					
+				}
+				else{
+					System.out.print(" ");
+				}
+			}
+		}
+	}
 }
