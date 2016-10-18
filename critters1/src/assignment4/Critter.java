@@ -117,7 +117,13 @@ public abstract class Critter {
 
 	private final void moveCritter(int x_coord, int y_coord){
 
-	    this.positionCount [this.x_coord][this.y_coord] -= 1;
+		if(!this.hasMoved) {
+			return;
+		}
+
+		this.hasMoved = true;
+
+	    positionMap [this.x_coord][this.y_coord] -= 1;
 
 		if(x_coord < 0){
 			this.x_coord = x_coord + Params.world_width;
@@ -133,7 +139,7 @@ public abstract class Critter {
 			this.y_coord = (this.y_coord + y_coord) % Params.world_height;
 		}
 
-		this.positionCount [this.x_coord][this.y_coord] += 1;
+		positionMap [this.x_coord][this.y_coord] += 1;
 	}
 	
 	private final static int[] getRandomCoord(){
@@ -328,6 +334,53 @@ public abstract class Critter {
 		}
 		
 		
+	}
+
+	private static void encounter() {
+		//iterate over fightClub
+		//
+		Critter A;
+		Critter B;
+		boolean boolA;
+		boolean boolB;
+		int powA;
+		int powB;
+
+		while(fightClub.size() > 1){
+			A = fightClub.get(0);
+			fightClub.remove(0);
+
+			B = fightClub.get(0);
+			fightClub.remove(0);
+
+			boolA = A.fight(B.toString());
+			boolB = B.fight(A.toString());
+
+			if(A.energy <= 0){
+				positionMap[A.x_coord][A.y_coord] -= 1;
+				population.remove(A);
+			}
+			if(B.energy <= 0){
+				positionMap[B.x_coord][B.y_coord] -= 1;
+				population.remove(B);
+			}
+
+			if(A.x_coord == B.x_coord && A.y_coord == B.y_coord){
+				int rollA = (boolA?getRandomInt(A.getEnergy()):0);
+				//int rollA = getRandomInt((boolA?A.getEnergy():0));
+
+				int rollB = (boolB?getRandomInt(B.getEnergy()):0);
+
+				if(rollA >= rollB){
+					B.energy = 0;
+					A.energy += B.energy/2;
+				}
+				else{
+					A.energy = 0;
+					B.energy += A.energy/2;
+				}
+			}
+		}
 	}
 	
 	public static void displayWorld() {}
