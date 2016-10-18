@@ -375,10 +375,12 @@ public abstract class Critter {
 				if(rollA >= rollB){
 					B.energy = 0;
 					A.energy += B.energy/2;
+					fightClub.add(A);
 				}
 				else{
 					A.energy = 0;
 					B.energy += A.energy/2;
+					fightClub.add(B);
 				}
 			}
 		}
