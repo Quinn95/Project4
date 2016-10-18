@@ -25,6 +25,9 @@ public abstract class Critter {
 	private	static List<Critter> population = new java.util.ArrayList<Critter>();
 	private static List<Critter> babies = new java.util.ArrayList<Critter>();
 
+	//Keeps track of how many critters exist on each given space
+	private static int[][] positionCount = new int[Params.world_width][Params.world_height];
+	
 	// Gets the package name.  This assumes that Critter and its subclasses are all in the same package.
 	static {
 		myPackage = Critter.class.getPackage().toString().split(" ")[1];
@@ -100,7 +103,7 @@ public abstract class Critter {
 		}
 	}
 	
-	private final static int[] getRandomCoord(void){
+	private final static int[] getRandomCoord(){
 		int rx = getRandomInt(Params.world_width-1);
 		int ry = getRandomInt(Params.world_height-1);
 		int[] arr = {rx, ry};
@@ -111,6 +114,15 @@ public abstract class Critter {
 	}
 
 	public abstract void doTimeStep();
+	/*	1. Do move
+	 *  2. Do make child
+	 *  3. encounters
+	 *  4. remove dead critters
+	 * 
+	 */
+	
+	
+	
 	public abstract boolean fight(String oponent);
 	
 	/**
@@ -132,6 +144,8 @@ public abstract class Critter {
 			temp.y_coord = xyPos[1];
 			temp.energy = Params.start_energy;
 			population.add(temp);
+			
+			positionCount[temp.x_coord][temp.y_coord] += 1;
 		}
 		catch(ClassNotFoundException e1){
 			throw new InvalidCritterException(critter_class_name);
@@ -241,6 +255,14 @@ public abstract class Critter {
 	}
 	
 	public static void worldTimeStep() {
+		//calls doTimeStep for every critter in collection
+		for (Critter c : population) {
+			c.energy -= Params.rest_energy_cost;
+			c.doTimeStep();
+		}
+		
+		
+		//check for encounters
 	}
 	
 	public static void displayWorld() {}
