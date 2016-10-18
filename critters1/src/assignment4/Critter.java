@@ -24,6 +24,7 @@ public abstract class Critter {
 	private static String myPackage;
 	private	static List<Critter> population = new java.util.ArrayList<Critter>();
 	private static List<Critter> babies = new java.util.ArrayList<Critter>();
+	private boolean fightMode = false;
 
 	//Keeps track of how many critters exist on each given space
 	private static int[][] positionMap = new int[Params.world_width][Params.world_height];
