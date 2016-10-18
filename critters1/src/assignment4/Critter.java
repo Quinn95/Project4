@@ -365,8 +365,6 @@ public abstract class Critter {
 		Critter B;
 		boolean boolA;
 		boolean boolB;
-		int powA;
-		int powB;
 		boolean stillFighting;
 
 		while(fightClub.size() > 1){
