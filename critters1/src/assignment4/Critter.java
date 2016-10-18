@@ -27,6 +27,10 @@ public abstract class Critter {
 
 	//Keeps track of how many critters exist on each given space
 	private static int[][] positionCount = new int[Params.world_width][Params.world_height];
+	private static List<Critter> fightClub = new java.util.ArrayList<Critter>();
+	
+	
+	private boolean hasMoved = false;
 	
 	// Gets the package name.  This assumes that Critter and its subclasses are all in the same package.
 	static {
@@ -196,7 +200,7 @@ public abstract class Critter {
 	public static List<Critter> getInstances(String critter_class_name) throws InvalidCritterException {
 		List<Critter> result = new java.util.ArrayList<Critter>();
 		for(Critter c : population){
-			
+			//do stuff
 		}
 		return result;
 	}
@@ -283,15 +287,42 @@ public abstract class Critter {
 	public static void clearWorld() {
 	}
 	
+	private static boolean onSquare(Critter c, int x, int y){
+		return (c.x_coord == x) && (c.y_coord == y);
+	}
+	
 	public static void worldTimeStep() {
 		//calls doTimeStep for every critter in collection
 		for (Critter c : population) {
-			c.energy -= Params.rest_energy_cost;
-			c.doTimeStep();
+			c.hasMoved = false;
+			c.energy -= Params.rest_energy_cost; //critter loses rest energy
+			c.doTimeStep(); // 
+			
+			//remove dead creatures
+			if(c.energy <= 0){
+				positionCount[c.x_coord][c.y_coord] -= 1;
+				population.remove(c);
+			}
+			
+			
+		}
+		//check for encounters
+		for(int i = 0; i < Params.world_height; i++){
+			for(int j = 0; j < Params.world_width; j++){
+				if(positionCount[i][j] > 1){
+					for(Critter c : population){
+						if(onSquare(c, i, j)){
+							fightClub.add(c);
+						}
+					}
+					//encounters with fightClub
+				}
+			}
 		}
 		
+		//add babies to population
 		
-		//check for encounters
+		
 	}
 	
 	public static void displayWorld() {}
