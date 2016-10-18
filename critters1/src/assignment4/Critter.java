@@ -408,31 +408,23 @@ public abstract class Critter {
 	}
 	
 	public static void displayWorld() {
-		try{
-			for(int i = 0; i < 2; i++)
-				makeCritter("Craig");
-		}
-		catch(InvalidCritterException e){
-			System.out.println("failed");
-		}
-		System.out.println(population.size());
 		System.out.print("+");
-		for(int i = 0; i < Params.world_width-1; i++){
+		for(int i = 0; i < Params.world_width; i++){
 			System.out.print("-");
 		}
 		System.out.println("+");
 		System.out.flush();
-		for(int j = 0; j < Params.world_height-1; j++){
+		for(int j = 0; j < Params.world_height; j++){
 			System.out.print("|");
 			System.out.flush();
 
-			for(int i = 0; i < Params.world_width-1; i++){
+			for(int i = 0; i < Params.world_width; i++){
 				if(positionMap[i][j] >= 1){
 					for(Critter c : population){
 						if(onSquare(c, i, j)){
 							System.out.print(c);
+							break;
 						}
-						break;
 					}
 				}
 				else{
@@ -443,7 +435,7 @@ public abstract class Critter {
 		}
 		
 		System.out.print("+");
-		for(int i = 0; i < Params.world_width-1; i++){
+		for(int i = 0; i < Params.world_width; i++){
 			System.out.print("-");
 		}
 		System.out.println("+");

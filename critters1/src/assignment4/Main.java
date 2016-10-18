@@ -71,6 +71,41 @@ public class Main {
         
         System.out.println("GLHF");
         
+        boolean playing = true;
+        
+        String input;
+        while(playing){
+        	System.out.print("Input: ");
+        	input = kb.nextLine();
+        	if(input.equals("quit")){
+        		System.out.print("Thanks for playing!");
+        		playing = false;
+        	}
+        	else if(input.equals("show")){
+                Critter.displayWorld();
+        	}
+        	else if(input.equals("step")){
+        		System.out.print("You stepped 1");
+        		Critter.worldTimeStep();
+        	}
+        	else if(input.equals("make")){
+        		for(int i = 0; i < 10; i++){
+        			try{
+        				Critter.makeCritter("Craig");
+        				if(i == 0){
+        					Critter.makeCritter("Algae");
+        				}
+        			}
+        			catch(InvalidCritterException e){
+        			}
+        		}
+        	}
+        	
+            System.out.flush();
+
+        }
+        
+        
         /* Write your code above */
         System.out.flush();
 
