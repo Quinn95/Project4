@@ -316,7 +316,7 @@ public abstract class Critter {
 			}
 		}
 		
-		//add babies to population 
+		//add babies to population
 		
 		
 	}
