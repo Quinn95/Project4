@@ -75,12 +75,37 @@ public abstract class Critter {
 			moveCritter(-1,1);
 		}
 
-		energy -= (Params.walk_energy_cost + Params.rest_energy_cost);
+		energy -= Params.walk_energy_cost;
 
 	}
 	
 	protected final void run(int direction) {
-		
+		if(direction == 0){
+			moveCritter(0,2);
+		}
+		else if(direction == 1){
+			moveCritter(2,2);
+		}
+		else if(direction == 2){
+			moveCritter(2,0);
+		}
+		else if(direction == 3){
+			moveCritter(2,-2);
+		}
+		else if(direction == 4){
+			moveCritter(0, -2);
+		}
+		else if(direction == 5){
+			moveCritter(-2,-2);
+		}
+		else if(direction == 6){
+			moveCritter(-2,0);
+		}
+		else if(direction == 7){
+			moveCritter(-2,2);
+		}
+
+		energy -= Params.run_energy_cost;
 	}
 
 	private final void moveCritter(int x_coord, int y_coord){
@@ -100,7 +125,7 @@ public abstract class Critter {
 		}
 	}
 	
-	private final static int[] getRandomCoord(void){
+	private final static int[] getRandomCoord(){
 		int rx = getRandomInt(Params.world_width-1);
 		int ry = getRandomInt(Params.world_height-1);
 		int[] arr = {rx, ry};
