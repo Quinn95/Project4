@@ -26,7 +26,7 @@ public abstract class Critter {
 	private static List<Critter> babies = new java.util.ArrayList<Critter>();
 
 	//Keeps track of how many critters exist on each given space
-	private static int[][] positionCount = new int[Params.world_width][Params.world_height];
+	private static int[][] positionMap = new int[Params.world_width][Params.world_height];
 	private static List<Critter> fightClub = new java.util.ArrayList<Critter>();
 	
 	
@@ -174,7 +174,7 @@ public abstract class Critter {
 			temp.energy = Params.start_energy;
 			population.add(temp);
 			
-			positionCount[temp.x_coord][temp.y_coord] += 1;
+			positionMap[temp.x_coord][temp.y_coord] += 1;
 		}
 		catch(ClassNotFoundException e1){
 			throw new InvalidCritterException(critter_class_name);
@@ -296,7 +296,7 @@ public abstract class Critter {
 			
 			//remove dead creatures
 			if(c.energy <= 0){
-				positionCount[c.x_coord][c.y_coord] -= 1;
+				positionMap[c.x_coord][c.y_coord] -= 1;
 				population.remove(c);
 			}
 			
@@ -305,7 +305,7 @@ public abstract class Critter {
 		//check for encounters
 		for(int i = 0; i < Params.world_height; i++){
 			for(int j = 0; j < Params.world_width; j++){
-				if(positionCount[i][j] > 1){
+				if(positionMap[i][j] > 1){
 					for(Critter c : population){
 						if(onSquare(c, i, j)){
 							fightClub.add(c);
@@ -319,6 +319,7 @@ public abstract class Critter {
 		//add babies to population
 		for(Critter b : babies){
 			population.add(b);
+			positionMap[b.x_coord][b.y_coord] += 1;
 			babies.remove(b);
 		}
 		
