@@ -179,7 +179,7 @@ public abstract class Critter {
 	 */
 	public static void makeCritter(String critter_class_name) throws InvalidCritterException {
 		try{
-			Critter temp = (Critter) Class.forName(critter_class_name).newInstance();
+			Critter temp = (Critter) Class.forName("assignment4." + critter_class_name).newInstance();
 			//set variables
 			int[] xyPos = getRandomCoord();
 			temp.x_coord = xyPos[0];
@@ -367,9 +367,10 @@ public abstract class Critter {
 		boolean boolB;
 		int powA;
 		int powB;
-		boolean stillFighting = true;
+		boolean stillFighting;
 
 		while(fightClub.size() > 1){
+			stillFighting = true;
 			A = fightClub.get(0);
 			fightClub.remove(0);
 
@@ -409,6 +410,14 @@ public abstract class Critter {
 	}
 	
 	public static void displayWorld() {
+		try{
+			for(int i = 0; i < 2; i++)
+				makeCritter("Craig");
+		}
+		catch(InvalidCritterException e){
+			System.out.println("failed");
+		}
+		System.out.println(population.size());
 		System.out.print("+");
 		for(int i = 0; i < Params.world_width-1; i++){
 			System.out.print("-");
@@ -423,9 +432,9 @@ public abstract class Critter {
 				if(positionMap[i][j] >= 1){
 					for(Critter c : population){
 						if(onSquare(c, i, j)){
-							System.out.print(c.toString());
+							System.out.print(c);
 						}
-						//break;
+						break;
 					}
 				}
 				else{
