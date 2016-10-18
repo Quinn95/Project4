@@ -113,6 +113,8 @@ public abstract class Critter {
 
 	private final void moveCritter(int x_coord, int y_coord){
 
+	    this.positionCount [this.x_coord][this.y_coord] -= 1;
+
 		if(x_coord < 0){
 			this.x_coord = x_coord + Params.world_width;
 		}
@@ -126,6 +128,8 @@ public abstract class Critter {
 		else{
 			this.y_coord = (this.y_coord + y_coord) % Params.world_height;
 		}
+
+		this.positionCount [this.x_coord][this.y_coord] += 1;
 	}
 	
 	private final static int[] getRandomCoord(){
