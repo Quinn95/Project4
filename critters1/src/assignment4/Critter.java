@@ -58,6 +58,7 @@ public abstract class Critter {
 	private int y_coord;
 	
 	protected final void walk(int direction) {
+
 		if(direction == 0){
 			moveCritter(0,1);
 		}
@@ -126,6 +127,10 @@ public abstract class Critter {
 
 		this.hasMoved = true;
 
+		if(fightMode && !checkSquareIsEmpty(x_coord, y_coord)){
+			return;
+		}
+
 	    positionMap [this.x_coord][this.y_coord] -= 1;
 
 		if(x_coord < 0){
@@ -143,6 +148,35 @@ public abstract class Critter {
 		}
 
 		positionMap [this.x_coord][this.y_coord] += 1;
+	}
+
+	/*
+	 * x_coord and y_coord are shifts in current x and y
+	 * this method returns if the (x + x_coord, y + y_coord) are taken
+	 */
+	private final boolean checkSquareIsEmpty(int x_coord, int y_coord){
+		int x_temp;
+		int y_temp;
+
+		if(x_coord < 0){
+			x_temp = x_coord + Params.world_width;
+		}
+		else{
+			x_temp = (this.x_coord + x_coord) % Params.world_width;
+		}
+
+		if(y_coord < 0){
+			y_temp = y_coord + Params.world_height;
+		}
+		else{
+			y_temp = (this.y_coord + y_coord) % Params.world_height;
+		}
+
+		if(positionMap[x_temp][y_temp] > 0){
+			return false;
+		}
+
+		return true;
 	}
 	
 	private final static int[] getRandomCoord(){
@@ -377,6 +411,9 @@ public abstract class Critter {
 
 			boolA = A.fight(B.toString());
 			boolB = B.fight(A.toString());
+
+			A.fightMode = true;
+			B.fightMode = true;
 
 			if(A.energy <= 0){
 				killCritter(A);
