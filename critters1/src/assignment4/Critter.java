@@ -64,25 +64,25 @@ public abstract class Critter {
 			moveCritter(0,-1);
 		}
 		else if(direction == 1){
-			moveCritter(-1,-1);
+			moveCritter(1,-1);
 		}
 		else if(direction == 2){
-			moveCritter(-1,0);
+			moveCritter(1,0);
 		}
 		else if(direction == 3){
-			moveCritter(-1,1);
+			moveCritter(1,1);
 		}
 		else if(direction == 4){
 			moveCritter(0, 1);
 		}
 		else if(direction == 5){
-			moveCritter(1,1);
+			moveCritter(-1,1);
 		}
 		else if(direction == 6){
-			moveCritter(1,0);
+			moveCritter(-1,0);
 		}
 		else if(direction == 7){
-			moveCritter(1,-1);
+			moveCritter(-1,-1);
 		}
 
 		energy -= Params.walk_energy_cost;
@@ -120,31 +120,31 @@ public abstract class Critter {
 
 	
 	//should be static I think
-	private final void moveCritter(int x_coord, int y_coord){
+	private final void moveCritter(int dx, int dy){
 		if(this.hasMoved) {
 			return;
 		}
 
 		this.hasMoved = true;
 
-		if(fightMode && !checkSquareIsEmpty(x_coord, y_coord)){
+		if(fightMode && !checkSquareIsEmpty(dx, dy)){
 			return;
 		}
 
 	    positionMap [this.x_coord][this.y_coord] -= 1;
 
-		if(x_coord < 0){
-			this.x_coord = x_coord + Params.world_width;
+		if((this.x_coord + dx) < 0){
+			this.x_coord = dx + Params.world_width;
 		}
 		else{
-			this.x_coord = (this.x_coord + x_coord) % Params.world_width;
+			this.x_coord = (this.x_coord + dx) % Params.world_width;
 		}
 
-		if(y_coord < 0){
-			this.y_coord = y_coord + Params.world_height;
+		if((y_coord + dy) < 0){
+			this.y_coord = dy + Params.world_height;
 		}
 		else{
-			this.y_coord = (this.y_coord + y_coord) % Params.world_height;
+			this.y_coord = (this.y_coord + dy) % Params.world_height;
 		}
 
 		positionMap [this.x_coord][this.y_coord] += 1;
