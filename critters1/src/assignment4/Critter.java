@@ -432,6 +432,7 @@ public abstract class Critter {
 						}
 					}
 					//encounters with fightClub
+					encounter();
 				}
 			}
 		}
@@ -454,8 +455,9 @@ public abstract class Critter {
 		boolean boolA;
 		boolean boolB;
 		boolean stillFighting;
-
+		
 		while(fightClub.size() > 1){
+
 			stillFighting = true;
 			A = fightClub.get(0);
 			fightClub.remove(0);
@@ -469,12 +471,17 @@ public abstract class Critter {
 			A.fightMode = true;
 			B.fightMode = true;
 
+			System.out.println("fight at: " + A.x_coord + ", " + A.y_coord);
+
 			if(A.energy <= 0){
 				killCritter(A);
+				System.out.println("Critter A died");
 				stillFighting = false;
 			}
 			if(B.energy <= 0){
 				killCritter(B);
+				System.out.println("Critter B died");
+
 				stillFighting = false;
 			}
 
@@ -484,29 +491,40 @@ public abstract class Critter {
 
 				int rollB = (boolB?getRandomInt(B.getEnergy()):0);
 
+				System.out.println("A rolled: " + rollA + " B rolled: " + rollB);
+
 				if(rollA >= rollB){
-					B.energy = 0;
+					System.out.println("Critter B died");
 					A.energy += B.energy/2;
 					fightClub.add(A);
+					killCritter(B);
+
 				}
 				else{
-					A.energy = 0;
+					System.out.println("Critter A died");
 					B.energy += A.energy/2;
 					fightClub.add(B);
+					killCritter(A);
 				}
 			}
 		}
 	}
 	
 	public static void displayWorld() {
+		System.out.print("  ");
+		for(int i = 0; i < Params.world_width; i++){
+			System.out.print(i);
+		}
+
 		System.out.print("+");
+		
 		for(int i = 0; i < Params.world_width; i++){
 			System.out.print("-");
 		}
 		System.out.println("+");
 		System.out.flush();
 		for(int j = 0; j < Params.world_height; j++){
-			System.out.print("|");
+			System.out.print(j + "|");
 			System.out.flush();
 
 			for(int i = 0; i < Params.world_width; i++){
