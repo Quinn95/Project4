@@ -89,10 +89,13 @@ public class Main {
         		Critter.worldTimeStep();
         	}
         	else if(input.equals("make")){
-        		for(int i = 0; i < 10; i++){
+        		for(int i = 0; i < 1; i++){
         			try{
-        				Critter.makeCritter("Craig");
-        				if(i % 3 == 0){
+        				//Critter.makeCritter("Craig");
+        				Critter.makeCritter("MyCritter1");
+        				Critter.makeCritter("MyCritter6");
+        				Critter.makeCritter("MyCritter7");
+        				if(i >= 0){
         					Critter.makeCritter("Algae");
         				}
         			}
