@@ -92,7 +92,7 @@ public class Main {
         		for(int i = 0; i < 10; i++){
         			try{
         				Critter.makeCritter("Craig");
-        				if(i == 0){
+        				if(i % 3 == 0){
         					Critter.makeCritter("Algae");
         				}
         			}

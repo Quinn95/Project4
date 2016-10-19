@@ -58,6 +58,54 @@ public abstract class Critter {
 	private int x_coord;
 	private int y_coord;
 	
+	
+	private static void placeBaby(Critter baby, int direction){
+		int dx = 0, dy = 0;
+		
+		if(direction == 0){
+			dx = 0; dy = 1;;
+		}
+		else if(direction == 1){
+			dx = 1; dy = -1;
+		}
+		else if(direction == 2){
+			dx = 1; dy = 0;
+		}
+		else if(direction == 3){
+			dx = 1; dy = 1;
+		}
+		else if(direction == 4){
+			dx = 0; dy = 1;
+		}
+		else if(direction == 5){
+			dx = -1; dy = 1;
+		}
+		else if(direction == 6){
+			dx = -1; dy = 0;
+		}
+		else if(direction == 7){
+			dx = -1; dy = -1;
+		}
+
+
+		
+		if((baby.x_coord + dx) < 0){
+			baby.x_coord = dx + Params.world_width;
+		}
+		else{
+			baby.x_coord = (baby.x_coord + dx) % Params.world_width;
+		}
+
+		if((baby.y_coord + dy) < 0){
+			baby.y_coord = dy + Params.world_height;
+		}
+		else{
+			baby.y_coord = (baby.y_coord + dy) % Params.world_height;
+		}
+
+		
+	}
+	
 	protected final void walk(int direction) {
 
 		if(direction == 0){
@@ -140,7 +188,7 @@ public abstract class Critter {
 			this.x_coord = (this.x_coord + dx) % Params.world_width;
 		}
 
-		if((y_coord + dy) < 0){
+		if((this.y_coord + dy) < 0){
 			this.y_coord = dy + Params.world_height;
 		}
 		else{
@@ -187,6 +235,12 @@ public abstract class Critter {
 	}
 	
 	protected final void reproduce(Critter offspring, int direction) {
+		
+		offspring.x_coord = this.x_coord;
+		offspring.y_coord = this.y_coord;
+		
+		babies.add(offspring);
+		
 	}
 
 	public abstract void doTimeStep();
