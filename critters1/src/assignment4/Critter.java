@@ -64,28 +64,28 @@ public abstract class Critter {
 	private static void placeBaby(Critter baby, int direction){
 		int dx = 0, dy = 0;
 		
-		if(direction == 0){
+		if(direction == 2){
 			dx = 0; dy = -1;;
 		}
 		else if(direction == 1){
 			dx = 1; dy = -1;
 		}
-		else if(direction == 2){
+		else if(direction == 0){
 			dx = 1; dy = 0;
 		}
-		else if(direction == 3){
+		else if(direction == 7){
 			dx = 1; dy = 1;
 		}
-		else if(direction == 4){
+		else if(direction == 6){
 			dx = 0; dy = 1;
 		}
 		else if(direction == 5){
 			dx = -1; dy = 1;
 		}
-		else if(direction == 6){
+		else if(direction == 4){
 			dx = -1; dy = 0;
 		}
-		else if(direction == 7){
+		else if(direction == 3){
 			dx = -1; dy = -1;
 		}
 
@@ -110,28 +110,28 @@ public abstract class Critter {
 	
 	protected final void walk(int direction) {
 
-		if(direction == 0){
+		if(direction == 2){
 			moveCritter(0,-1);
 		}
 		else if(direction == 1){
 			moveCritter(1,-1);
 		}
-		else if(direction == 2){
+		else if(direction == 0){
 			moveCritter(1,0);
 		}
-		else if(direction == 3){
+		else if(direction == 7){
 			moveCritter(1,1);
 		}
-		else if(direction == 4){
+		else if(direction == 6){
 			moveCritter(0, 1);
 		}
 		else if(direction == 5){
 			moveCritter(-1,1);
 		}
-		else if(direction == 6){
+		else if(direction == 4){
 			moveCritter(-1,0);
 		}
-		else if(direction == 7){
+		else if(direction == 3){
 			moveCritter(-1,-1);
 		}
 
@@ -140,28 +140,28 @@ public abstract class Critter {
 	}
 	
 	protected final void run(int direction) {
-		if(direction == 0){
+		if(direction == 2){
 			moveCritter(0,-2);
 		}
 		else if(direction == 1){
 			moveCritter(2,-2);
 		}
-		else if(direction == 2){
+		else if(direction == 0){
 			moveCritter(2,0);
 		}
-		else if(direction == 3){
+		else if(direction == 7){
 			moveCritter(2,2);
 		}
-		else if(direction == 4){
+		else if(direction == 6){
 			moveCritter(0, 2);
 		}
 		else if(direction == 5){
 			moveCritter(-2,2);
 		}
-		else if(direction == 6){
+		else if(direction == 4){
 			moveCritter(-2,0);
 		}
-		else if(direction == 7){
+		else if(direction == 3){
 			moveCritter(-2,-2);
 		}
 
