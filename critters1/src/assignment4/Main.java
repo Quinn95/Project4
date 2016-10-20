@@ -9,6 +9,7 @@
  * 16470
  * Slip days used: <0>
  * Fall 2016
+ * GitHub URL: https://github.com/Quinn95/Project4
  */
 package assignment4; // cannot be in default package
 import java.lang.reflect.*;

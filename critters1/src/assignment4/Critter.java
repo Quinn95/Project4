@@ -9,6 +9,7 @@
  * 16470
  * Slip days used: <0>
  * Fall 2016
+ * GitHub URL: https://github.com/Quinn95/Project4
  */
 package assignment4;
 
@@ -229,8 +230,8 @@ public abstract class Critter {
 	}
 	
 	private final static int[] getRandomCoord(){
-		int rx = getRandomInt(Params.world_width-1);
-		int ry = getRandomInt(Params.world_height-1);
+		int rx = getRandomInt(Params.world_width);
+		int ry = getRandomInt(Params.world_height);
 		int[] arr = {rx, ry};
 		return arr;
 	}
@@ -409,6 +410,7 @@ public abstract class Critter {
 	 */
 	public static void clearWorld() {
 		population.clear();
+		positionMap = new int[Params.world_width][Params.world_height];
 		babies.clear();
 	}
 	
@@ -507,21 +509,21 @@ public abstract class Critter {
 			B = fightClub.get(0);
 			fightClub.remove(0);
 
-			System.out.println("Critter A: " + A.toString() + "Critter B: " + B.toString());
+			//System.out.println("Critter A: " + A.toString() + "Critter B: " + B.toString());
 			boolA = A.fight(B.toString());
 			boolB = B.fight(A.toString());
 
 			A.fightMode = boolA;
 			B.fightMode = boolB;
 
-			System.out.println("fight at: " + A.x_coord + ", " + A.y_coord);
+			//System.out.println("fight at: " + A.x_coord + ", " + A.y_coord);
 
 			if(A.energy <= 0){
-				System.out.println("Critter A died to exhaustion");
+				//System.out.println("Critter A died to exhaustion");
 				stillFighting = false;
 			}
 			if(B.energy <= 0){
-				System.out.println("Critter B died exhaustion");
+				//System.out.println("Critter B died exhaustion");
 
 				stillFighting = false;
 			}
@@ -532,17 +534,17 @@ public abstract class Critter {
 
 				int rollB = (boolB?getRandomInt(B.getEnergy()):0);
 
-				System.out.println("A rolled: " + rollA + " B rolled: " + rollB);
+				//System.out.println("A rolled: " + rollA + " B rolled: " + rollB);
 
 				if(rollA >= rollB){
-					System.out.println("Critter B died");
+					//System.out.println("Critter B died");
 					A.energy += B.energy/2;
 					B.energy = 0;
 					fightClub.add(A);
 
 				}
 				else{
-					System.out.println("Critter A died");
+					//System.out.println("Critter A died");
 					B.energy += A.energy/2;
 					A.energy = 0;
 					fightClub.add(B);
