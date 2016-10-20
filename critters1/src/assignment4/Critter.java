@@ -272,7 +272,7 @@ public abstract class Critter {
 	 */
 	public static void makeCritter(String critter_class_name) throws InvalidCritterException {
 		try{
-			Critter temp = (Critter) Class.forName("assignment4." + critter_class_name).newInstance();
+			Critter temp = (Critter) Class.forName(myPackage + "." + critter_class_name).newInstance();
 			//set variables
 			int[] xyPos = getRandomCoord();
 			temp.x_coord = xyPos[0];
