@@ -239,6 +239,8 @@ public abstract class Critter {
 		offspring.x_coord = this.x_coord;
 		offspring.y_coord = this.y_coord;
 		
+		placeBaby(offspring, direction);
+		
 		babies.add(offspring);
 		
 	}
