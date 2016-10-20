@@ -479,6 +479,14 @@ public abstract class Critter {
 		}
 		babies.clear();
 		
+		for(int i = 0; i < Params.refresh_algae_count; i++){
+			try{
+				makeCritter("Algae");
+			}
+			catch(InvalidCritterException e){
+			}
+		}
+		
 	}
 
 	private static void encounter() {
