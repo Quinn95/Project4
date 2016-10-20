@@ -414,10 +414,6 @@ public abstract class Critter {
 		return (c.x_coord == x) && (c.y_coord == y);
 	}
 
-	private static void killCritter(Critter c){
-		positionMap[c.x_coord][c.y_coord] -= 1;
-		population.remove(c);
-	}
 	
 	public static void worldTimeStep() {
 		//calls doTimeStep for every critter in collection
@@ -429,6 +425,7 @@ public abstract class Critter {
 			c.doTimeStep();
 
 			if(c.energy <= 0){
+				positionMap[c.x_coord][c.y_coord] -= 1;
 				it.remove();
 			}
 		}
@@ -460,6 +457,17 @@ public abstract class Critter {
 				}
 			}
 		}
+		
+		//died during an encounter
+		it = population.iterator();
+		while(it.hasNext()){
+			Critter c = it.next();
+			if(c.energy <= 0){
+				positionMap[c.x_coord][c.y_coord] -= 1;
+				it.remove();
+			}
+		}
+
 		
 		//add babies to population
 		for(Critter b : babies){
@@ -499,12 +507,10 @@ public abstract class Critter {
 			System.out.println("fight at: " + A.x_coord + ", " + A.y_coord);
 
 			if(A.energy <= 0){
-				killCritter(A);
 				System.out.println("Critter A died to exhaustion");
 				stillFighting = false;
 			}
 			if(B.energy <= 0){
-				killCritter(B);
 				System.out.println("Critter B died exhaustion");
 
 				stillFighting = false;
@@ -521,15 +527,15 @@ public abstract class Critter {
 				if(rollA >= rollB){
 					System.out.println("Critter B died");
 					A.energy += B.energy/2;
+					B.energy = 0;
 					fightClub.add(A);
-					killCritter(B);
 
 				}
 				else{
 					System.out.println("Critter A died");
 					B.energy += A.energy/2;
+					A.energy = 0;
 					fightClub.add(B);
-					killCritter(A);
 				}
 			}
 		}
