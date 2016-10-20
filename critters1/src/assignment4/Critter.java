@@ -140,28 +140,28 @@ public abstract class Critter {
 	
 	protected final void run(int direction) {
 		if(direction == 0){
-			moveCritter(0,2);
+			moveCritter(0,-2);
 		}
 		else if(direction == 1){
-			moveCritter(2,2);
+			moveCritter(2,-2);
 		}
 		else if(direction == 2){
 			moveCritter(2,0);
 		}
 		else if(direction == 3){
-			moveCritter(2,-2);
+			moveCritter(2,2);
 		}
 		else if(direction == 4){
-			moveCritter(0, -2);
+			moveCritter(0, 2);
 		}
 		else if(direction == 5){
-			moveCritter(-2,-2);
+			moveCritter(-2,2);
 		}
 		else if(direction == 6){
 			moveCritter(-2,0);
 		}
 		else if(direction == 7){
-			moveCritter(-2,2);
+			moveCritter(-2,-2);
 		}
 
 		energy -= Params.run_energy_cost;
