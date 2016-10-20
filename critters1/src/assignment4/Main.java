@@ -11,6 +11,8 @@
  * Fall 2016
  */
 package assignment4; // cannot be in default package
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.io.*;
 
@@ -69,39 +71,84 @@ public class Main {
         /* Do not alter the code above for your submission. */
         /* Write your code below. */
         
-        System.out.println("GLHF");
+        //System.out.println("GLHF");
         
         boolean playing = true;
         
         String input;
+        String[] inputSplit;
         while(playing){
-        	System.out.print("Input: ");
+        	System.out.print("critters>");
         	input = kb.nextLine();
-        	if(input.equals("quit")){
+        	inputSplit = input.split("\\s+");
+        	System.out.println(Arrays.toString(inputSplit));
+        	if(inputSplit.length == 1 && inputSplit[0].equals("quit")){
         		System.out.print("Thanks for playing!");
         		playing = false;
         	}
-        	else if(input.equals("show")){
+        	else if(inputSplit.length == 1 && inputSplit[0].equals("show")){
                 Critter.displayWorld();
         	}
-        	else if(input.equals("step")){
-        		System.out.print("You stepped 1");
-        		Critter.worldTimeStep();
+        	else if(inputSplit.length >= 1 && inputSplit.length < 3 && inputSplit[0].equals("step")){
+        		int n = 1;
+        		if(inputSplit.length == 2){
+        			n = Integer.parseInt((inputSplit[1]));
+        		}
+        		for(int i = 0; i < n; i++){
+        			Critter.worldTimeStep();
+        		}
         	}
-        	else if(input.equals("make")){
-        		for(int i = 0; i < 1; i++){
+        	
+        	else if(inputSplit.length >= 2 && inputSplit.length <= 3 && inputSplit[0].equals("make")){
+        		int n = 1;
+        		if(inputSplit.length == 3){
         			try{
-        				//Critter.makeCritter("Craig");
-        				Critter.makeCritter("MyCritter1");
-        				Critter.makeCritter("MyCritter6");
-        				Critter.makeCritter("MyCritter7");
-        				if(i >= 0){
-        					Critter.makeCritter("Algae");
-        				}
+        				n = Integer.parseInt(inputSplit[2]);
         			}
-        			catch(InvalidCritterException e){
+        			catch(NumberFormatException e){
+                		System.out.println("error processing: " + input);
+                		continue;
         			}
         		}
+        		for(int i = 0; i < n; i++){
+        			try{
+        				Critter.makeCritter(inputSplit[1]);
+        			}
+        			catch(InvalidCritterException e){
+        				System.out.println("error processing: " + input);
+        				break;
+        			}
+        		}
+        		
+        	}
+        	
+        	else if(inputSplit.length == 2 && inputSplit[0].equals("seed")){
+        		long n = 0;
+        		try{
+        			n = Long.parseLong(inputSplit[1]);
+        		}
+        		catch(NumberFormatException e){
+            		System.out.println("error processing: " + input);
+            		continue;
+        		}
+        		Critter.setSeed(n);
+        	}
+        	
+            else if(inputSplit.length == 2 && inputSplit[0].equals("stats")){
+            	List<Critter> l;
+            	try{
+            		l = Critter.getInstances("assignment4." + inputSplit[1]);
+            	}
+            	catch(InvalidCritterException e){
+            		System.out.println("error processing: " + input);
+            		continue;
+            	}
+            	Critter.runStats(l);
+            }
+
+        	
+        	else{
+        		System.out.println("error processing: " + input);
         	}
         	
             System.out.flush();
