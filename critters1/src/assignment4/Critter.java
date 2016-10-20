@@ -13,6 +13,7 @@
 package assignment4;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 /* see the PDF for descriptions of the methods and fields in this class
@@ -63,7 +64,7 @@ public abstract class Critter {
 		int dx = 0, dy = 0;
 		
 		if(direction == 0){
-			dx = 0; dy = 1;;
+			dx = 0; dy = -1;;
 		}
 		else if(direction == 1){
 			dx = 1; dy = -1;
@@ -420,6 +421,19 @@ public abstract class Critter {
 	
 	public static void worldTimeStep() {
 		//calls doTimeStep for every critter in collection
+		Iterator<Critter> it = population.iterator();
+		while(it.hasNext()){
+			Critter c = it.next();
+			c.hasMoved = false;
+			c.energy -= Params.rest_energy_cost; //critter loses rest energy
+			c.doTimeStep();
+
+			if(c.energy <= 0){
+				it.remove();
+			}
+		}
+
+		/*
 		for (Critter c : population) {
 			c.hasMoved = false;
 			c.energy -= Params.rest_energy_cost; //critter loses rest energy
@@ -429,7 +443,8 @@ public abstract class Critter {
 			if(c.energy <= 0){
 				killCritter(c);		
 			}
-		}	
+		}	*/
+
 			
 		//check for encounters
 		for(int i = 0; i < Params.world_height; i++){
@@ -450,9 +465,9 @@ public abstract class Critter {
 		for(Critter b : babies){
 			population.add(b);
 			positionMap[b.x_coord][b.y_coord] += 1;
-			babies.remove(b);
+			//babies.remove(b);
 		}
-		
+		babies.clear();
 		
 	}
 
