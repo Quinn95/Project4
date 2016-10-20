@@ -24,6 +24,7 @@ public class MyCritter1 extends Critter.TestCritter {
 			MyCritter1 myBaby = new MyCritter1();
 			reproduce(myBaby, babyDirection);
 		}
+		System.out.println("MyCritter 1 energy: " + this.getEnergy());
 		//walk(0);
 	}
 
