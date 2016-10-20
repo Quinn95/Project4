@@ -3,10 +3,10 @@
  * Replace <...> with your actual data.
  * Ali Ziyaan Momin
  * AZM259
- * <Student1 5-digit Unique No.>
- * <Student2 Name>
- * <Student2 EID>
- * <Student2 5-digit Unique No.>
+ * 16470
+ * Quinn Z
+ * qaz62
+ * 16470
  * Slip days used: <0>
  * Fall 2016
  */
