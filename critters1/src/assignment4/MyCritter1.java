@@ -14,6 +14,11 @@ public class MyCritter1 extends Critter.TestCritter {
 		int input2 = s.nextInt();
 		this.setX_coord(input);
 		this.setY_coord(input2);
+
+		System.out.println("Do you want to have a baby: ");
+		int babyDirection = s.nextInt();
+		MyCritter1 myBaby = new MyCritter1();
+		reproduce(myBaby, babyDirection);
 		//walk(0);
 	}
 
