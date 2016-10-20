@@ -236,14 +236,16 @@ public abstract class Critter {
 	}
 	
 	protected final void reproduce(Critter offspring, int direction) {
+		if(this.energy >= Params.min_reproduce_energy){
+			offspring.x_coord = this.x_coord;
+			offspring.y_coord = this.y_coord;
 		
-		offspring.x_coord = this.x_coord;
-		offspring.y_coord = this.y_coord;
+			placeBaby(offspring, direction);
 		
-		placeBaby(offspring, direction);
-		
-		babies.add(offspring);
-		
+			offspring.energy = this.energy/2;
+			this.energy -= (this.energy+1)/2;
+			babies.add(offspring);
+		}
 	}
 
 	public abstract void doTimeStep();
