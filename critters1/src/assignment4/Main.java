@@ -11,6 +11,7 @@
  * Fall 2016
  */
 package assignment4; // cannot be in default package
+import java.lang.reflect.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -81,7 +82,7 @@ public class Main {
         	System.out.print("critters>");
         	input = kb.nextLine();
         	inputSplit = input.split("\\s+");
-        	System.out.println(Arrays.toString(inputSplit));
+        	//System.out.println(Arrays.toString(inputSplit));
         	if(inputSplit.length == 1 && inputSplit[0].equals("quit")){
         		System.out.print("Thanks for playing!");
         		playing = false;
@@ -137,14 +138,31 @@ public class Main {
             else if(inputSplit.length == 2 && inputSplit[0].equals("stats")){
             	List<Critter> l;
             	try{
-            		l = Critter.getInstances("assignment4." + inputSplit[1]);
+            		l = Critter.getInstances(myPackage + "." + inputSplit[1]);
+
             	}
             	catch(InvalidCritterException e){
             		System.out.println("error processing: " + input);
             		continue;
             	}
-            	Critter.runStats(l);
-            }
+            	try{
+					Critter temp = (Critter) Class.forName(myPackage + "." + inputSplit[1]).newInstance();
+					Class<?> tempClass = temp.getClass();
+					Method m = tempClass.getMethod("runStats", List.class);
+					m.invoke(tempClass, l);
+				} catch (IllegalAccessException e1) {
+					Critter.runStats(l);
+				} catch (InstantiationException e2) {
+					Critter.runStats(l);
+				} catch (ClassNotFoundException e3) {
+					Critter.runStats(l);
+				} catch (NoSuchMethodException e4) {
+					Critter.runStats(l);
+				} catch (InvocationTargetException e5) {
+					Critter.runStats(l);
+				}
+
+			}
 
         	
         	else{

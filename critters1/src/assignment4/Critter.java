@@ -554,10 +554,10 @@ public abstract class Critter {
 	
 	
 	public static void displayWorld() {
-		System.out.print("  ");
-		for(int i = 0; i < Params.world_width; i++){
-			System.out.print(i);
-		}
+		//System.out.print("  ");
+		//for(int i = 0; i < Params.world_width; i++){
+			//System.out.print(i);
+		//}
 
 		System.out.print("+");
 		
@@ -567,7 +567,7 @@ public abstract class Critter {
 		System.out.println("+");
 		System.out.flush();
 		for(int j = 0; j < Params.world_height; j++){
-			System.out.print(j + "|");
+			System.out.print("|");
 			System.out.flush();
 
 			for(int i = 0; i < Params.world_width; i++){
