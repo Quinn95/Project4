@@ -480,7 +480,7 @@ public abstract class Critter {
 			//babies.remove(b);
 		}
 		babies.clear();
-		/*
+
 		for(int i = 0; i < Params.refresh_algae_count; i++){
 			try{
 				makeCritter("Algae");
@@ -488,7 +488,7 @@ public abstract class Critter {
 			catch(InvalidCritterException e){
 			}
 		}
-		*/
+
 		
 	}
 
@@ -510,14 +510,14 @@ public abstract class Critter {
 			B = fightClub.get(0);
 			fightClub.remove(0);
 
-			System.out.println("Critter A: " + A.toString() + "Critter B: " + B.toString());
+			//System.out.println("Critter A: " + A.toString() + "Critter B: " + B.toString());
 			boolA = A.fight(B.toString());
 			boolB = B.fight(A.toString());
 
 			A.fightMode = boolA;
 			B.fightMode = boolB;
 
-			System.out.println("fight at: " + A.x_coord + ", " + A.y_coord);
+			//System.out.println("fight at: " + A.x_coord + ", " + A.y_coord);
 
 			if(A.energy <= 0){
 				//System.out.println("Critter A died to exhaustion");
