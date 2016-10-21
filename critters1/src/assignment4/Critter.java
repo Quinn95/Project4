@@ -448,8 +448,8 @@ public abstract class Critter {
 
 			
 		//check for encounters
-		for(int i = 0; i < Params.world_height; i++){
-			for(int j = 0; j < Params.world_width; j++){
+		for(int j = 0; j < Params.world_height; j++){
+			for(int i = 0; i < Params.world_width; i++){
 				if(positionMap[i][j] > 1){
 					for(Critter c : population){
 						if(onSquare(c, i, j)){
@@ -480,7 +480,7 @@ public abstract class Critter {
 			//babies.remove(b);
 		}
 		babies.clear();
-		
+		/*
 		for(int i = 0; i < Params.refresh_algae_count; i++){
 			try{
 				makeCritter("Algae");
@@ -488,6 +488,7 @@ public abstract class Critter {
 			catch(InvalidCritterException e){
 			}
 		}
+		*/
 		
 	}
 
@@ -509,14 +510,14 @@ public abstract class Critter {
 			B = fightClub.get(0);
 			fightClub.remove(0);
 
-			//System.out.println("Critter A: " + A.toString() + "Critter B: " + B.toString());
+			System.out.println("Critter A: " + A.toString() + "Critter B: " + B.toString());
 			boolA = A.fight(B.toString());
 			boolB = B.fight(A.toString());
 
 			A.fightMode = boolA;
 			B.fightMode = boolB;
 
-			//System.out.println("fight at: " + A.x_coord + ", " + A.y_coord);
+			System.out.println("fight at: " + A.x_coord + ", " + A.y_coord);
 
 			if(A.energy <= 0){
 				//System.out.println("Critter A died to exhaustion");
