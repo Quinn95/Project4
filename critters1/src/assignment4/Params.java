@@ -1,3 +1,17 @@
+/* CRITTERS Params.java
+ * EE422C Project 4 submission by
+ * Quinten Zambeck
+ * qaz62
+ * 16470
+ * Ali Ziyaan Momin
+ * AZM259
+ * 16470
+ * Slip days used: 0
+ * Fall 2016
+ * GitHub URL: https://github.com/Quinn95/Project4
+ */
+
+
 package assignment4;
 
 /*
@@ -6,8 +20,8 @@ package assignment4;
  */
 
 public class Params {
-	public final static int world_width = 160;
-	public final static int world_height = 80;
+	public final static int world_width = 100;
+	public final static int world_height = 100;
 	public final static int walk_energy_cost = 2;
 	public final static int run_energy_cost = 5;
 	public final static int rest_energy_cost = 0;

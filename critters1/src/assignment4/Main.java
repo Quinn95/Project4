@@ -1,19 +1,18 @@
-/* CRITTERS Main.java
+/* CRITTERS Critter.java
  * EE422C Project 4 submission by
- * Replace <...> with your actual data.
+ * Quinten Zambeck
+ * qaz62
+ * 16470
  * Ali Ziyaan Momin
  * AZM259
  * 16470
- * Quinn Z
- * qaz62
- * 16470
- * Slip days used: <0>
+ * Slip days used: 0
  * Fall 2016
  * GitHub URL: https://github.com/Quinn95/Project4
  */
+
 package assignment4; // cannot be in default package
 import java.lang.reflect.*;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.io.*;
@@ -94,7 +93,13 @@ public class Main {
         	else if(inputSplit.length >= 1 && inputSplit.length < 3 && inputSplit[0].equals("step")){
         		int n = 1;
         		if(inputSplit.length == 2){
-        			n = Integer.parseInt((inputSplit[1]));
+        			try{
+        				n = Integer.parseInt((inputSplit[1]));
+        			}
+        			catch(NumberFormatException e){
+                		System.out.println("error processing: " + input);
+                		continue;
+        			}
         		}
         		for(int i = 0; i < n; i++){
         			Critter.worldTimeStep();

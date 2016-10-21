@@ -1,3 +1,16 @@
+/* CRITTERS Aggie.java
+ * EE422C Project 4 submission by
+ * Quinten Zambeck
+ * qaz62
+ * 16470
+ * Ali Ziyaan Momin
+ * AZM259
+ * 16470
+ * Slip days used: 0
+ * Fall 2016
+ * GitHub URL: https://github.com/Quinn95/Project4
+ */
+
 package assignment4;
 
 //Created by Quinn Z.
@@ -27,6 +40,9 @@ public class Aggie extends Critter {
         	cultPower += 25;
     	}
     	if(cultPower >= 50){
+    		move = false;
+    	}
+    	else{
     		move = true;
     	}
 
@@ -44,6 +60,7 @@ public class Aggie extends Critter {
         int count = ag.size();
         if(count > 0) {
             System.out.println("There are " + count + " Aggies on the map.");
+            System.out.println("But anyone can be an Aggie, so...");
         }
         else{
             System.out.println("There must not be enough UT applicants!");

@@ -1,3 +1,16 @@
+/* CRITTERS Weakling.java
+ * EE422C Project 4 submission by
+ * Quinten Zambeck
+ * qaz62
+ * 16470
+ * Ali Ziyaan Momin
+ * AZM259
+ * 16470
+ * Slip days used: 0
+ * Fall 2016
+ * GitHub URL: https://github.com/Quinn95/Project4
+ */
+
 package assignment4;
 
 /**
